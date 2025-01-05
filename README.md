@@ -1,2 +1,4 @@
 # openalex_and
-project to validate and improve author name disambiguation algorithm
+This is a project to validate and improve author-name disambiguation algorithm.
+
+First, constructing training dataset
