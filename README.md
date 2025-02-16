@@ -6,7 +6,8 @@ First, constructing training dataset。 Keep scientists with complete publicatio
 | file name      | note                                           |
 |-----------------------|-----------------------|
 |gt_name.csv | scientists' name of the groundtruch(gt) dataset|
-|gt_source.csv| the source the gt dataset|z
+|gt_source.csv|the source the gt dataset|
+|gt_paper.csv|the meta data of the gt papers|
 
 
 - Scientists: ID-Name-altername-startyear-endyear
@@ -43,4 +44,54 @@ Second, features
 |                       | abstract                                          |
 |                       | keyphrases                                        |
 
-Third, data files
+Third, data files are in 'openalex_disam'
+
+paperID.csv
+
+au_affs.csv
+
+cddt_paper.csv
+
+and_paper_journal.csv
+
+and_paper_title_year.csv
+
+and_paper_grants.csv
+
+and_paper_keywords.csv
+
+
+
+
+| column    | Note                                        |
+|-----------------------|---------------------------------------------------|
+|work_id| paperID|
+|author_position||
+|author_id|author id of openalex|
+|raw_author_name|author name|
+|is_corresponding||
+|affiliation_id||
+|raw_affiliation_string||
+|institution_ids||
+|source_id|id of journals|
+|id in "and_paper_journal.csv"|work_id|
+|display_name|journal name|
+|issn||
+|id in 'and_paper_title_year.csv'|work_id|
+|title|title of the paper|
+|publication_year||
+
+## disam steps
+
+1. construct the relationship between gt and openalex;
+
+- link paperIDs
+- limit the journals to ssci/sci journals as our gt data is obtained from web of science journals;
+
+2. contructs pairs and features
+
+3. train the classification model
+
+4. train the clustering model
+
+
