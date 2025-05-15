@@ -87,6 +87,8 @@ and_paper_keywords.csv
 
 - link paperIDs
 - limit the journals to ssci/sci journals as our gt data is obtained from web of science journals;
+	- using the alex_wos_journal_year.csv file to limit journals;
+- limit the publication year to years before 2019;
 
 2. contructs pairs and features
 
