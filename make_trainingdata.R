@@ -22,8 +22,9 @@ gt_name <- read_csv("/Users/birdstone/Library/CloudStorage/Dropbox/ChinaReturnee
 # --------------------------------------------------
 
 library(tidyverse)
-works_au_affs <- read_csv('works_au_affs.csv')
-gt_name <- read_csv("gt_name.csv")
+# root path
+works_au_affs <- read_csv('works_au_affs_neat.csv')
+gt_name <- read_csv("/data/home/zlab/openalex_disam/gt_name.csv")
 dim(works_au_affs)
 sum(str_count(works_au_affs$raw_author_name," +")==1)
 
@@ -35,15 +36,15 @@ works_au_affs <- works_au_affs %>%
            raw_author_name = str_replace_all(raw_author_name,'\\s+'," "))
 # write_csv(works_au_affs,file="works_au_affs_neat.csv")
 works_au_affs %>% filter(raw_author_name == "He Rui") %>% dim()
-gt_name <- gt_name %>% 
-    mutate(count =str_length(givenname),
-           givenname = if_else(str_length(givenname)==2 & !str_detect(givenname,"[aoeiu]"),
-                               str_c(sep=" ",str_sub(givenname,1,1),str_sub(givenname,2,2)),
-                               givenname),
-           fullname = str_c(sep=" ",givenname,familyname))
-gt_name <- gt_name %>% mutate(count2 =str_length(givenname))
+# gt_name <- gt_name %>% 
+#     mutate(count =str_length(givenname),
+#            givenname = if_else(str_length(givenname)==2 & !str_detect(givenname,"[aoeiu]"),
+#                                str_c(sep=" ",str_sub(givenname,1,1),str_sub(givenname,2,2)),
+#                                givenname),
+#            fullname = str_c(sep=" ",givenname,familyname))
+# gt_name <- gt_name %>% mutate(count2 =str_length(givenname))
 # write_csv(gt_name,"gt_name.csv")
-gt_name <- read_excel("gt_name.xlsx")
+gt_name <- read_excel("/data/home/zlab/gt_name.xlsx")
 gt_name <- gt_name %>% select(-count,-count2)
 
 cddt_paper <- works_au_affs %>% 
@@ -55,9 +56,9 @@ cddt_paper <- works_au_affs %>%
 paperID <- cddt_paper %>% distinct(work_id)
 au_affs <- works_au_affs %>% inner_join(paperID, by = "work_id")
 
-write_csv(paperID, file = "./openalex_disam/paperID.csv")
-write_csv(au_affs, file = "./openalex_disam/au_affs.csv")
-write_csv(cddt_paper, file = "./openalex_disam/cddt_paper.csv")
+write_csv(paperID, file = "/data/home/zlab/openalex_disam/paperID.csv")
+write_csv(au_affs, file = "/data/home/zlab/openalex_disam/au_affs.csv")
+write_csv(cddt_paper, file = "/data/home/zlab/openalex_disam/cddt_paper.csv")
 
 # ----------------------------------
 # select other information from pgsql

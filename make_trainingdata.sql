@@ -15,7 +15,8 @@ CREATE TABLE and_paper_abstract AS SELECT a.id, a.abstract_inverted_index FROM w
 CREATE TABLE and_paper_grants AS SELECT a.* FROM works_grants a INNER JOIN and_paperid b ON a.work_id = b.id;
 CREATE TABLE and_paper_keywords AS SELECT a.* FROM works_keywords a INNER JOIN and_paperid b ON a.work_id = b.id;
 
-# \COPY (select json_agg(row_to_json(and_paper_abstract)) from and_paper_abstract) TO '~/openalex_disam/and_paper_abstract.csv';
+# \COPY (select json_agg(row_to_json(and_paper_abstract)) from and_paper_abstract) TO '~/openalex_disam/and_paper_abstract.json';
+\copy and_paper_abstract TO '~/openalex_disam/and_paper_abstract.txt' HEADER CSV DELIMITER '|';
 \copy and_paper_grants TO '~/openalex_disam/and_paper_grants.csv' HEADER CSV DELIMITER ',';
 \copy and_paper_keywords TO '~/openalex_disam/and_paper_keywords.csv' HEADER CSV DELIMITER ',';
 \copy and_paper_journal TO '~/openalex_disam/and_paper_journal.csv' HEADER CSV DELIMITER ',';
