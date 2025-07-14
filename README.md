@@ -10,8 +10,8 @@ First, constructing training dataset。 Keep scientists with complete publicatio
 |gt_paper.csv|the meta data of the gt papers|
 
 
-- Scientists: ID-Name-altername-startyear-endyear
-- 
+id_panel: ID-Name-altername-startyear-endyear
+ 
 
 Second, features
 
